@@ -1,0 +1,3 @@
+function h = balance_function(a,dhdx,g,rho,x)
+    fun = @(n)nthroot( (-n+2)/(2*a)*abs(dhdx)^(1-n)*dhdx^-1 ,1/(n+2));
+end
