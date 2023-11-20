@@ -11,6 +11,8 @@ sum1 = @(n) sum((H(n)- H_obs).^2);
 fun = @(n) sqrt(sum1(n));
 
 [nmin, fmin] = fminbnd(fun, 2, 3);
+nmin
+fmin
 
 % Plot
 
@@ -38,9 +40,9 @@ options = optimoptions('fminunc');
 options.TolFun = 1e-28;
 options.OptimalityTolerance = 1e-28;    % This completely sucks
 options.StepTolerance = 1e-28;
-options.MaxFunctionEvaluations = 5e2;
+options.MaxFunctionEvaluations = 5e3;
 [Amin, fmin2] = fminunc(fun2, 2e-25, options);
-
+Amin
 
 i=0;
 X2 = linspace(1e-28,1e-22,1e4);
@@ -53,4 +55,3 @@ end
 figure
 loglog(X2, F2)
 ylim([5*1e2, 1e4])
-
