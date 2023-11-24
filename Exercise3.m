@@ -10,7 +10,7 @@ sum1 = @(n) sum((H(n)- H_obs).^2);
 
 fun = @(n) sqrt(sum1(n));
 
-[nmin, fmin] = fminbnd(fun, 2, 3);
+[nmin, fmin] = fminunc(fun, 5);
 nmin
 fmin
 

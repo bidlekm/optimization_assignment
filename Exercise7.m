@@ -8,4 +8,6 @@ H = @(n, A) (-(2+n)/(2*10.^A).*a.*(rho*g).^(-n).*abs(dhdx).^(1-n).*dhdx.^(-1)).^
 
 sum1 = @(args) H(args(1), args(2))- H_obs;
 
-sol = lsqnonlin(sum1, [2, -24])
+options = optimoptions('lsqnonlin', 'Algorithm', 'levenberg-marquardt');
+
+sol = lsqnonlin(sum1, [2, -24],[],[], options)

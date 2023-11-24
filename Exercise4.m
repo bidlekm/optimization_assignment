@@ -1,10 +1,9 @@
 clear, clc;
 
 data = load("Sharad.mat");
-A = 10^-23;
 a = data.a; dhdx = data.dhdx; g = data.g; rho = data.rho; x = data.x; H_obs = data.H_obs;
 
-H = @(n, A) (-(2+n)/(2*10.^A).*a.*(rho*g).^(-n).*abs(dhdx).^(1-n).*dhdx.^-1).^(1./(n+2));
+H = @(n, A) (-(2+n)/(2*10.^A).*a.*(rho*g).^(-n).*abs(dhdx).^(1-n).*dhdx.^-1).^(1/(n+2));
 
 sum1 = @(n, A) sum((H(n,A)- H_obs).^2);
 
@@ -14,11 +13,11 @@ initialdata = [2.89, -25];
 
 
 options = optimoptions('fminunc');
-% options.TolFun = 1e-35;
-% options.OptimalityTolerance = 1e-35;    % This completely sucks
-% options.StepTolerance = 1e-35;
-% options.MaxFunctionEvaluations = 5e8;
-% options.MaxIterations = 1e8;
+options.TolFun = 1e-35;
+options.OptimalityTolerance = 1e-35;    % This completely sucks
+options.StepTolerance = 1e-35;
+options.MaxFunctionEvaluations = 5e8;
+options.MaxIterations = 1e8;
 [minParams, fval] = fminunc(fun, initialdata, options);
 
 
@@ -27,8 +26,8 @@ options = optimoptions('fminunc');
 %%
 
 
-n_values = linspace(2, 10, 100);
-A_values = linspace(-100, 0, 100);
+n_values = linspace(1, 60, 100);
+A_values = linspace(-300, 0, 100);
 
 [NN, AA] = meshgrid(n_values, A_values);
 Z = zeros(size(NN));
