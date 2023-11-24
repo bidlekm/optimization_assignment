@@ -9,7 +9,7 @@ H = @(n, A) (-(2+n)/(2*10.^A).*a.*(rho*g).^(-n).*abs(dhdx).^(1-n).*dhdx.^-1).^(1
 sum1 = @(n, A) sum((H(n,A)- H_obs).^2);
 
 fun = @(args) sqrt(sum1(args(1),args(2)));
-initialdata = [2.89, -26];
+initialdata = [2.89, -25];
 
 
 
