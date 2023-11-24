@@ -26,8 +26,8 @@ options.MaxIterations = 1e8;
 %%
 
 
-n_values = linspace(1, 60, 100);
-A_values = linspace(-300, 0, 100);
+n_values = linspace(2, 4, 100);
+A_values = linspace(-30, -20, 100);
 
 [NN, AA] = meshgrid(n_values, A_values);
 Z = zeros(size(NN));
